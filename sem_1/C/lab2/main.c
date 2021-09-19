@@ -1,14 +1,17 @@
 #include "uint1024_t.h"
 #include <stdio.h>
+#include <malloc.h>
 
 int main() {
-    uint1024_t a;
+
+    uint1024_t a, b;
     scanf_value(&a);
-    printf_value(a);
+    scanf_value(&b);
+    printf_value(mul_op(a, b));
+    printf_value(add_op(a, b));
+    printf_value(sub_op(a, b));
 
     //printf_value(from_uint(1414144111));
 
-
-    // при нуле и без конца строки выводит вот это (0: ?т1- ъ)
     return 0;
 }

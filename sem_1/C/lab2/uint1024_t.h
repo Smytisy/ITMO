@@ -11,7 +11,7 @@
 
 
 typedef struct{
-    uint32_t ranks[32];
+    uint32_t *ranks;
 } uint1024_t;
 
 uint1024_t from_uint(unsigned int x);
