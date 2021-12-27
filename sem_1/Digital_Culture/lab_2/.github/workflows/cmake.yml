@@ -2,10 +2,10 @@ name: CMake
 
 on:
   push:
-    branches: [ lab-2 ]
+    branches: [ lab_2 ]
     tags: ['*']
   pull_request:
-    branches: [ lab-2 ]
+    branches: [ lab_2 ]
     tags: ['*']
 
 env:
