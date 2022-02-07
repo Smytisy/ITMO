@@ -15,6 +15,7 @@ class Tree {
         Node *right;
     };
 
+
     Node *root;
 
     Node *insert(int x, Node *t) {
@@ -25,7 +26,7 @@ class Tree {
             t->right = NULL;
         } else if (x < t->value) {
             t->left = insert(x, t->left);
-        } else {
+        } else if (x > t->value) {
             t->right = insert(x, t->right);
         }
         return t;
@@ -58,10 +59,10 @@ class Tree {
         }
 
         if (x < t->value) {
-            return remove(x, t->left);
+            t->left = remove(x, t->left);
 
         } else if (x > t->value) {
-            return remove(x, t->right);
+            t->right = remove(x, t->right);
 
         } else if (t->left != NULL && t->right != NULL) {
             tmp = find_min(t->right);
@@ -78,16 +79,17 @@ class Tree {
         return t;
     }
 
-    Node* exist(int x, Node *t) {
+
+    Node *exist(int x, Node *t) {
         if (t == NULL || t->value == x) {
             return t;
-        } else  {
+        } else {
             return exist(x, x < t->value ? t->left : t->right);
         }
     }
 
     Node *next(int x, Node *t) {
-        Node * smallest_of_the_big = NULL;
+        Node *smallest_of_the_big = NULL;
         while (t != NULL) {
             if (x >= t->value) {
                 t = t->right;
@@ -105,7 +107,7 @@ class Tree {
     }
 
     Node *prev(int x, Node *t) {
-        Node * biggest_of_the_small = NULL;
+        Node *biggest_of_the_small = NULL;
         while (t != NULL) {
             if (x <= t->value) {
                 t = t->left;
@@ -126,19 +128,23 @@ public:
     Tree() {
         root = NULL;
     }
+
     void insert(int x) {
         if (!exist(x)) {
             root = insert(x, root);
         }
     }
+
     void remove(int x) {
         if (exist(x)) {
             root = remove(x, root);
         }
     }
+
     bool exist(int x) {
         return exist(x, root) != NULL;
     }
+
     int prev(int x) {
         Node *tmp = prev(x, root);
         if (tmp == NULL) {
@@ -146,6 +152,7 @@ public:
         }
         return tmp->value;
     }
+
     int next(int x) {
         Node *tmp = next(x, root);
         if (tmp == NULL) {
@@ -157,13 +164,14 @@ public:
 
 
 void task_C() {
-    ifstream fin(R"(C:\Users\mailo\CLionProjects\algoLab5\files\bstsimple.in)");
-    ofstream fout(R"(C:\Users\mailo\CLionProjects\algoLab5\files\bstsimple.out)");
+    ifstream fin(R"(bstsimple.in)");
+    ofstream fout(R"(bstsimple.out)");
 
-    int x;
+
     string input;
     Tree t;
-    while(fin >> input) {
+    while (fin >> input) {
+        int x;
         if (input == "insert") {
             fin >> x;
             t.insert(x);
@@ -196,9 +204,9 @@ void task_C() {
     fin.close();
     fout.close();
 }
-
+/*
 int main() {
     task_C();
     return 0;
 }
-
+*/
